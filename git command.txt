@@ -11,3 +11,6 @@ git status
 git branch -M main
 git clone https://github.com/hashiim/shopy.git
 git reset head filename		remove frome stage  
+
+
+-BottomNavigationBar 
