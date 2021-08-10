@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopy/all_screen.dart';
-import 'package:shopy/need_screen.dart';
+import 'package:shopy/screens/all_screen.dart';
+import 'package:shopy/screens/need_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

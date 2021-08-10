@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopy/list_provider.dart';
 
 class NeededList extends StatelessWidget {
-  final ListsProvider prov = ListsProvider();
-
   NeededList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    ListsProvider prov = Provider.of<ListsProvider>(context, listen: true);
     return ListView.builder(
       itemCount: prov.neededIteams.length,
       itemBuilder: (context, index) => Center(

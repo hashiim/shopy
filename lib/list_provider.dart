@@ -26,4 +26,13 @@ class ListsProvider extends ChangeNotifier {
     _neededIteams = i;
     notifyListeners();
   }
+
+  addToNeed(index) {
+    neededIteams.add(Iteam(
+      name: allIteams[index].name,
+      type: allIteams[index].type,
+    ));
+    print(neededIteams.length);
+    notifyListeners();
+  }
 }
