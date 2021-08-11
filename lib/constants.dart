@@ -26,3 +26,11 @@ MaterialColor createMaterialColor(Color color) {
   });
   return MaterialColor(color.value, swatch);
 }
+
+mySnackBar(String text) {
+  SnackBar snackBar = SnackBar(
+    content: Text(text),
+    duration: Duration(seconds: 1),
+  );
+  return snackBar;
+}

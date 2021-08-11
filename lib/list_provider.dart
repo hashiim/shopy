@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'model/iteam.dart';
 
 class ListsProvider extends ChangeNotifier {
   List<Iteam> _allIteams = [
-    Iteam(name: "banan0", type: ["0"]),
-    Iteam(name: "orange1", type: ["1"]),
-    Iteam(name: "grep2", type: ["2"]),
-    Iteam(name: "apple3", type: ["3"]),
+    Iteam(name: "All 0", type: ["0"]),
+    Iteam(name: "All 1", type: ["1"]),
+    Iteam(name: "All 2", type: ["2"]),
+    Iteam(name: "All 3", type: ["3"]),
   ];
   List<Iteam> get allIteams => _allIteams;
   set allIteams(i) {
@@ -15,11 +14,17 @@ class ListsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  deleteFromAll(index) {
+    allIteams.removeAt(index);
+    notifyListeners();
+  }
+
+///////////////////////////////////////////////////////////
   List<Iteam> _neededIteams = [
-    Iteam(name: "banan0", type: ["0"]),
-    Iteam(name: "orange1", type: ["1"]),
-    Iteam(name: "grep2", type: ["2"]),
-    Iteam(name: "apple3", type: ["3"]),
+    Iteam(name: "Need 0", type: ["0"]),
+    Iteam(name: "Need 1", type: ["1"]),
+    Iteam(name: "Need 2", type: ["2"]),
+    Iteam(name: "Need 3", type: ["3"]),
   ];
   List<Iteam> get neededIteams => _neededIteams;
   set neededIteams(i) {
@@ -32,7 +37,11 @@ class ListsProvider extends ChangeNotifier {
       name: allIteams[index].name,
       type: allIteams[index].type,
     ));
-    print(neededIteams.length);
+    notifyListeners();
+  }
+
+  deleteFromNeed(index) {
+    neededIteams.removeAt(index);
     notifyListeners();
   }
 }

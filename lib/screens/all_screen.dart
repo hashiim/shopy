@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopy/constants.dart';
 import 'package:shopy/list_provider.dart';
 
 class AllScreen extends StatelessWidget {
@@ -14,6 +15,11 @@ class AllScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
+            onLongPress: () {
+              ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
+                  " ${prov.allIteams[index].name} has been deleted"));
+              prov.deleteFromAll(index);
+            },
             onTap: () {
               prov.addToNeed(index);
             },
