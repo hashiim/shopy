@@ -21,3 +21,4 @@ git reset head filename		remove frome stage
 -Dismissible
 -GestureDetector
 -Snackbar
+-stack position
