@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           title: 'shopy',
           theme: ThemeData(
             primarySwatch: myColors[1],
+            accentColor: myColors[2],
           ),
           home: MyHomePage(),
         ));

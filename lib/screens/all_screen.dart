@@ -53,17 +53,10 @@ class AllScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Name'),
-                    actions: <Widget>[
+                  return SimpleDialog(
+                    children: [
                       TextField(),
-                      ToggleButtons(
-                        children: [
-                          Icon(Icons.ac_unit),
-                          Icon(Icons.accessible_sharp)
-                        ],
-                        isSelected: [false, true],
-                      )
+                      MyTogleButtom(),
                     ],
                   );
                 },
@@ -87,5 +80,42 @@ class AllScreen extends StatelessWidget {
         ),
       ),
     ]);
+  }
+}
+
+class MyTogleButtom extends StatefulWidget {
+  const MyTogleButtom({Key? key}) : super(key: key);
+
+  @override
+  _MyTogleButtomState createState() => _MyTogleButtomState();
+}
+
+class _MyTogleButtomState extends State<MyTogleButtom> {
+  @override
+  Widget build(BuildContext context) {
+    final ListsProvider prov =
+        Provider.of<ListsProvider>(context, listen: true);
+    return ToggleButtons(
+      fillColor: createMaterialColor(Color(0xffbc6c25)),
+      children: prov.types
+          .map((e) => Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text("$e"),
+              ))
+          .toList(),
+      isSelected: prov.typesBool,
+      onPressed: (int index) {
+        int count = 0;
+        prov.typesBool.forEach((bool val) {
+          if (val) count++;
+        });
+
+        if (prov.typesBool[index] && count < 2) return;
+
+        setState(() {
+          prov.typesBool[index] = !prov.typesBool[index];
+        });
+      },
+    );
   }
 }

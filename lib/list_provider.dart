@@ -2,6 +2,18 @@ import 'package:flutter/material.dart';
 import 'model/iteam.dart';
 
 class ListsProvider extends ChangeNotifier {
+  /////////////////////////////////////////////////////
+  List<String> types = [
+    "type1111111",
+    "type2222222",
+    "type3333333",
+    "type4444444",
+    "type5555555",
+    "type6666666",
+    "type7777777",
+  ];
+  List<bool> typesBool = [true, false, false, false, false, false, false];
+  /////////////////////////////////////////////////////
   List<Iteam> _allIteams = [
     Iteam(name: "All 0", type: ["0"]),
     Iteam(name: "All 1", type: ["1"]),
