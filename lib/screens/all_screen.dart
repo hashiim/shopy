@@ -53,11 +53,17 @@ class AllScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return SimpleDialog(
-                    children: [
-                      TextField(),
-                      MyTogleButtom(),
-                    ],
+                  return Dialog(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextField(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        MyTogleButtom(),
+                      ],
+                    ),
                   );
                 },
               );
