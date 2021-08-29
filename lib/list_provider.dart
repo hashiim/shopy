@@ -13,6 +13,14 @@ class ListsProvider extends ChangeNotifier {
     "type7777777",
   ];
   List<bool> typesBool = [true, false, false, false, false, false, false];
+  List<Map<String, Object>> _options() {
+    List<Map<String, Object>> x =
+        types.map((e) => {'title': e, 'isActive': false}).toList();
+    return x;
+  }
+
+  List<Map<String, Object>> get options => _options;
+
   /////////////////////////////////////////////////////
   List<Iteam> _allIteams = [
     Iteam(name: "All 0", type: ["0"]),
