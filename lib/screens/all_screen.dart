@@ -89,43 +89,6 @@ class AllScreen extends StatelessWidget {
   }
 }
 
-class MyTogleButtom extends StatefulWidget {
-  const MyTogleButtom({Key? key}) : super(key: key);
-
-  @override
-  _MyTogleButtomState createState() => _MyTogleButtomState();
-}
-
-class _MyTogleButtomState extends State<MyTogleButtom> {
-  @override
-  Widget build(BuildContext context) {
-    final ListsProvider prov =
-        Provider.of<ListsProvider>(context, listen: true);
-    return ToggleButtons(
-      fillColor: createMaterialColor(Color(0xffbc6c25)),
-      children: prov.types
-          .map((e) => Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text("$e"),
-              ))
-          .toList(),
-      isSelected: prov.typesBool,
-      onPressed: (int index) {
-        int count = 0;
-        prov.typesBool.forEach((bool val) {
-          if (val) count++;
-        });
-
-        if (prov.typesBool[index] && count < 2) return;
-
-        setState(() {
-          prov.typesBool[index] = !prov.typesBool[index];
-        });
-      },
-    );
-  }
-}
-
 class MyOptions extends StatelessWidget {
   const MyOptions({Key? key}) : super(key: key);
 
@@ -148,23 +111,16 @@ class MyOptions extends StatelessWidget {
       );
     }
 
-    changeState(item) {
-      {
-        item['isActive'] = !item['isActive'];
-      }
-    }
-
     return Wrap(
         spacing: 10.0,
         runSpacing: 20.0,
-        children: prov
-            .options()
+        children: prov.options
             .map((option) => Container(
                 // margin: EdgeInsets.all(5),
                 decoration: customBoxDecoration(option['isActive']),
                 child: InkWell(
                     onTap: () {
-                      changeState(option);
+                      prov.changeState(option);
                     },
                     child: Container(
                         padding: EdgeInsets.all(10),
