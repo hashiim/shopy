@@ -115,22 +115,31 @@ class MyOptions extends StatelessWidget {
         spacing: 10.0,
         runSpacing: 20.0,
         children: prov.options
-            .map((option) => Container(
-                // margin: EdgeInsets.all(5),
-                decoration: customBoxDecoration(option['isActive']),
-                child: InkWell(
-                    onTap: () {
-                      prov.changeState(option);
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Text('${option['title']}',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                color: option['isActive']
-                                    ? Colors.white
-                                    : Colors.black87))))))
-            .toList());
+                .map((option) => Container(
+                    // margin: EdgeInsets.all(5),
+                    decoration: customBoxDecoration(option['isActive']),
+                    child: InkWell(
+                        onTap: () {
+                          prov.changeState(option);
+                        },
+                        child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Text('${option['title']}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: option['isActive']
+                                        ? Colors.white
+                                        : Colors.black87))))))
+                .toList() +
+            [
+              Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(' + New Type',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black87)))
+            ]);
   }
 }
