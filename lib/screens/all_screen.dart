@@ -134,12 +134,43 @@ class MyOptions extends StatelessWidget {
                 .toList() +
             [
               Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text(' + New Type',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87)))
+                child: InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SimpleDialog(
+                          children: [
+                            TextField(
+                              onChanged: (i) {
+                                prov.newType = i;
+                              },
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  if (prov.newType != "") {
+                                    prov.types.add(prov.newType);
+                                    prov.newType = "";
+                                    print(prov.types.length);
+                                    prov.noti();
+                                  }
+                                },
+                                child: Text("add"))
+                          ],
+                          title: Text("name"),
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text(' + New Type',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black87))),
+                ),
+              )
             ]);
   }
 }

@@ -5,8 +5,12 @@ class ListsProvider extends ChangeNotifier {
   ListsProvider() {
     options = types.map((e) => {'title': e, 'isActive': false}).toList();
   }
+  noti() {
+    notifyListeners();
+  }
+
   /////////////////////////////////////////////////////
-  List<String> types = [
+  List<String> _types = [
     "type1111111",
     "type2222222",
     "type3333333",
@@ -15,6 +19,12 @@ class ListsProvider extends ChangeNotifier {
     "type6666666",
     "type7777777",
   ];
+  List<String> get types => _types;
+  set types(i) {
+    _types = i;
+    notifyListeners();
+  }
+
   List<bool> typesBool = [true, false, false, false, false, false, false];
   List options = [];
 
@@ -25,6 +35,7 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
+  String newType = "";
   /////////////////////////////////////////////////////
   List<Iteam> _allIteams = [
     Iteam(name: "All 0", type: ["0"]),
