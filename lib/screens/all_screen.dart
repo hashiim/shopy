@@ -40,51 +40,6 @@ class AllScreen extends StatelessWidget {
           ),
         ),
       ),
-      Positioned(
-        bottom: 50,
-        right: 50,
-        child: Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: createMaterialColor(Color(0xff606c38)),
-          ),
-          child: IconButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return Dialog(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextField(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        MyOptions(),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-            icon: Icon(Icons.add),
-          ),
-        ),
-      ),
-      Positioned(
-        bottom: 50,
-        left: 50,
-        child: Container(
-          decoration: BoxDecoration(
-              color: createMaterialColor(Color(0xffbc6c25)),
-              shape: BoxShape.circle),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.filter_list),
-          ),
-        ),
-      ),
     ]);
   }
 }

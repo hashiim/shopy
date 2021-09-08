@@ -21,6 +21,16 @@ class _MyHomePageState extends State<MyHomePage> {
         return exitShowDialog(context);
       },
       child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: IconButton(
+                  onPressed: () {}, icon: Icon(Icons.filter_list_rounded)),
+            )
+          ],
+        ),
+        drawer: Drawer(),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           type: BottomNavigationBarType.shifting,
