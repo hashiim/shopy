@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopy/screens/all_screen.dart';
 import 'package:shopy/screens/need_screen.dart';
+import 'package:shopy/widgets/add_new_type.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -30,7 +31,36 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ],
         ),
-        drawer: Drawer(),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color(0xffbc6c25),
+                ),
+                child: Center(child: Text('Menu')),
+              ),
+              Divider(),
+              AddNewType(),
+              ListTile(
+                leading: Icon(Icons.remove),
+                title: const Text('Remove types'),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ListView.builder(
+                            itemBuilder: (BuildContext context, int index) {
+                          return Container();
+                        });
+                      });
+                },
+              ),
+              Divider(),
+            ],
+          ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           type: BottomNavigationBarType.shifting,

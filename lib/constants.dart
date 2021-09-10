@@ -29,7 +29,10 @@ MaterialColor createMaterialColor(Color color) {
 
 mySnackBar(String text) {
   SnackBar snackBar = SnackBar(
-    content: Text(text),
+    content: Text(
+      text,
+      textAlign: TextAlign.center,
+    ),
     duration: Duration(seconds: 1),
   );
   return snackBar;

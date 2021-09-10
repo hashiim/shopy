@@ -9,38 +9,57 @@ class AllScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ListsProvider prov =
         Provider.of<ListsProvider>(context, listen: true);
-    return Stack(children: [
-      ListView.builder(
-        itemCount: prov.allIteams.length,
-        itemBuilder: (context, index) => Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onLongPress: () {
-                ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
-                    " ${prov.allIteams[index].name} has been deleted"));
-                prov.deleteFromAll(index);
-              },
-              onTap: () {
-                prov.addToNeed(index);
-              },
-              child: Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(color: Color(0xffbc6c25)),
-                  color: Color(0xfffefae0),
-                ),
-                child: Text(
-                  prov.allIteams[index].name,
-                  style: TextStyle(fontSize: 24),
+    return ListView(
+      children: [
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: prov.allIteams.length,
+          itemBuilder: (context, index) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onLongPress: () {
+                    ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
+                        " ${prov.allIteams[index].name} has been deleted"));
+                    prov.deleteFromAll(index);
+                  },
+                  onTap: () {
+                    prov.addToNeed(index);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(color: Color(0xffbc6c25)),
+                      color: Color(0xfffefae0),
+                    ),
+                    child: Text(
+                      prov.allIteams[index].name,
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  ),
                 ),
               ),
+            );
+          },
+        ),
+        Center(
+          child: Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              border: Border.all(color: Color(0xffbc6c25)),
+              color: Color(0xfffefae0),
+            ),
+            child: Text(
+              "Add New Iteam",
+              style: TextStyle(fontSize: 24),
             ),
           ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }
 
