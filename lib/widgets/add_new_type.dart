@@ -38,12 +38,15 @@ class _AddNewTypeState extends State<AddNewType> {
               onPressed: () {
                 if (_type != "") {
                   prov.types.add(_type);
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(mySnackBar("$_type is added to Type"));
+                  _type = "";
                 }
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(mySnackBar("$_type is added to Type"));
+
                 setState(() {
                   _first = true;
                 });
+                _type = "";
               },
               icon: Icon(Icons.add))
         ],

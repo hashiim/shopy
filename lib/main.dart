@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'shopy',
           theme: ThemeData(
-            primarySwatch: myColors[1],
-            accentColor: myColors[2],
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: myColors[1])
+                .copyWith(secondary: myColors[2]),
           ),
           home: MyHomePage(),
         ));

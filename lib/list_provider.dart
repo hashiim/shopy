@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 import 'model/iteam.dart';
 
 class ListsProvider extends ChangeNotifier {
-  ListsProvider() {
-    options = types.map((e) => {'title': e, 'isActive': false}).toList();
-  }
-  noti() {
-    notifyListeners();
-  }
-
-  /////////////////////////////////////////////////////
   List<String> _types = [
     "type1111111",
     "type2222222",
@@ -26,7 +18,11 @@ class ListsProvider extends ChangeNotifier {
   }
 
   List<bool> typesBool = [true, false, false, false, false, false, false];
-  List options = [];
+
+  List<Map> options = [];
+  makeMap() {
+    options = types.map((e) => {'title': e, 'isActive': false}).toList();
+  }
 
   changeState(item) {
     {
