@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopy/widgets/add_new_type.dart';
+import 'package:shopy/components/myDrawer/add_new_type.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
