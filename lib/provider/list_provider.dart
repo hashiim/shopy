@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'model/iteam.dart';
+import '../../model/iteam.dart';
 
 class ListsProvider extends ChangeNotifier {
-  List<String> _types = [
+  noti() {
+    notifyListeners();
+  }
+
+  List<String> types = [
     "type1111111",
     "type2222222",
     "type3333333",
@@ -11,13 +15,13 @@ class ListsProvider extends ChangeNotifier {
     "type6666666",
     "type7777777",
   ];
-  List<String> get types => _types;
-  set types(i) {
-    _types = i;
-    notifyListeners();
-  }
+  // List<String> get types => _types;
+  // set types(i) {
+  //   _types = i;
+  //   notifyListeners();
+  // }
 
-  List<bool> typesBool = [true, false, false, false, false, false, false];
+  // List<bool> typesBool = [true, false, false, false, false, false, false];
 
   List<Map> options = [];
   makeMap() {
@@ -31,19 +35,20 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
-  String newType = "";
+  // String newTypename = "";
+  String newIteamName = "";
   /////////////////////////////////////////////////////
-  List<Iteam> _allIteams = [
+  List<Iteam> allIteams = [
     Iteam(name: "All 0", type: ["0"]),
     Iteam(name: "All 1", type: ["1"]),
     Iteam(name: "All 2", type: ["2"]),
     Iteam(name: "All 3", type: ["3"]),
   ];
-  List<Iteam> get allIteams => _allIteams;
-  set allIteams(i) {
-    _allIteams = i;
-    notifyListeners();
-  }
+  // List<Iteam> get allIteams => _allIteams;
+  // set allIteams(i) {
+  //   _allIteams = i;
+  //   notifyListeners();
+  // }
 
   deleteFromAll(index) {
     allIteams.removeAt(index);
@@ -51,17 +56,17 @@ class ListsProvider extends ChangeNotifier {
   }
 
 ///////////////////////////////////////////////////////////
-  List<Iteam> _neededIteams = [
+  List<Iteam> neededIteams = [
     Iteam(name: "Need 0", type: ["0"]),
     Iteam(name: "Need 1", type: ["1"]),
     Iteam(name: "Need 2", type: ["2"]),
     Iteam(name: "Need 3", type: ["3"]),
   ];
-  List<Iteam> get neededIteams => _neededIteams;
-  set neededIteams(i) {
-    _neededIteams = i;
-    notifyListeners();
-  }
+  // List<Iteam> get neededIteams => _neededIteams;
+  // set neededIteams(i) {
+  //   _neededIteams = i;
+  //   notifyListeners();
+  // }
 
   addToNeed(index) {
     neededIteams.add(Iteam(

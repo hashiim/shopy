@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants.dart';
+import 'package:shopy/provider/list_provider.dart';
 import 'package:shopy/screens/myhomepage.dart';
-
-import 'list_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,10 +15,6 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'shopy',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSwatch(primarySwatch: myColors[1])
-                .copyWith(secondary: myColors[2]),
-          ),
           home: MyHomePage(),
         ));
   }

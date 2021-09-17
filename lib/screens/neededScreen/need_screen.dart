@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants.dart';
-import 'package:shopy/list_provider.dart';
+import 'package:shopy/constants/snackBar.dart';
+import 'package:shopy/provider/list_provider.dart';
 
 class NeededList extends StatelessWidget {
   NeededList({Key? key}) : super(key: key);
@@ -24,8 +24,7 @@ class NeededList extends StatelessWidget {
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: Color(0xffbc6c25)),
-                color: Color(0xfffefae0),
+                border: Border.all(),
               ),
               child: Text(
                 prov.neededIteams[index].name,

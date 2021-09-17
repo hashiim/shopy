@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/list_provider.dart';
+import 'package:shopy/provider/list_provider.dart';
 
-import '../constants.dart';
+import '../constants/snackBar.dart';
 
 class AddNewType extends StatefulWidget {
   const AddNewType({Key? key}) : super(key: key);

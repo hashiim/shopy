@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants.dart';
-import 'package:shopy/list_provider.dart';
+import 'package:shopy/constants/snackBar.dart';
+import 'package:shopy/provider/list_provider.dart';
+import 'package:shopy/model/iteam.dart';
 
 class AllScreen extends StatelessWidget {
   AllScreen({Key? key}) : super(key: key);
@@ -31,8 +32,7 @@ class AllScreen extends StatelessWidget {
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Color(0xffbc6c25)),
-                      color: Color(0xfffefae0),
+                      border: Border.all(),
                     ),
                     child: Text(
                       prov.allIteams[index].name,
@@ -48,14 +48,12 @@ class AllScreen extends StatelessWidget {
           child: InkWell(
             onTap: () {
               prov.makeMap();
+
               showDialog(
                   context: context,
                   builder: (_) {
                     return SimpleDialog(
-                      children: [
-                        TextField(),
-                        MyOptions(),
-                      ],
+                      children: [NewIteamTextField(), MyOptions(), AddButton()],
                       title: Text('Add new Iteam'),
                     );
                   });
@@ -64,8 +62,7 @@ class AllScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: Color(0xffbc6c25)),
-                color: Color(0xfffefae0),
+                border: Border.all(),
               ),
               child: Text(
                 "Add New Iteam",
@@ -75,6 +72,23 @@ class AllScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class NewIteamTextField extends StatelessWidget {
+  const NewIteamTextField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final ListsProvider prov =
+        Provider.of<ListsProvider>(context, listen: false);
+    return TextField(
+      onChanged: (e) {
+        prov.newIteamName = e;
+      },
     );
   }
 }
@@ -122,5 +136,34 @@ class MyOptions extends StatelessWidget {
                                     ? Colors.white
                                     : Colors.black87))))))
             .toList());
+  }
+}
+
+class AddButton extends StatelessWidget {
+  const AddButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final ListsProvider prov =
+        Provider.of<ListsProvider>(context, listen: false);
+
+    return TextButton(
+      onPressed: () {
+        if (prov.newIteamName != "") {
+          List<String> temp = [];
+          prov.options.forEach((element) {
+            if (element['isActive'] == true) {
+              temp.add(element['title']);
+              element['isActive'] = false;
+            }
+          });
+          prov.allIteams.add(Iteam(name: prov.newIteamName, type: temp));
+          prov.newIteamName = "";
+          prov.noti();
+          Navigator.pop(context);
+        }
+      },
+      child: Text("Add"),
+    );
   }
 }

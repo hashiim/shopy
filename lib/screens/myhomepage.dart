@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopy/screens/all_screen.dart';
-import 'package:shopy/screens/need_screen.dart';
-import 'package:shopy/widgets/add_new_type.dart';
+import 'package:shopy/components/exit_show_dialog.dart';
+import 'package:shopy/components/my_drawer.dart';
+import 'package:shopy/screens/allScreen/all_screen.dart';
+import 'package:shopy/screens/neededScreen/need_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -31,36 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Color(0xffbc6c25),
-                ),
-                child: Center(child: Text('Menu')),
-              ),
-              Divider(),
-              AddNewType(),
-              ListTile(
-                leading: Icon(Icons.remove),
-                title: const Text('Remove types'),
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return ListView.builder(
-                            itemBuilder: (BuildContext context, int index) {
-                          return Container();
-                        });
-                      });
-                },
-              ),
-              Divider(),
-            ],
-          ),
-        ),
+        drawer: MyDrawer(),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           type: BottomNavigationBarType.shifting,
@@ -71,19 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           items: [
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.archive,
-                  color: Color(0xfffefae0),
-                ),
-                label: 'Need',
-                backgroundColor: Color(0xff606c38)),
+              icon: Icon(
+                Icons.archive,
+              ),
+              label: 'Need',
+            ),
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.unarchive,
-                  color: Color(0xfffefae0),
-                ),
-                label: 'All',
-                backgroundColor: Color(0xffdda15e)),
+              icon: Icon(
+                Icons.unarchive,
+              ),
+              label: 'All',
+            ),
           ],
         ),
         body: Center(
@@ -92,22 +62,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
-
-Future<bool> exitShowDialog(BuildContext context) async {
-  return await showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text('Are you sure?'),
-      content: Text('Do you want to exit an App'),
-      actions: <Widget>[
-        ElevatedButton(
-            child: Text("Yes"),
-            onPressed: () => Navigator.of(context).pop(true)),
-        ElevatedButton(
-            child: Text('No'),
-            onPressed: () => Navigator.of(context).pop(false)),
-      ],
-    ),
-  );
 }
