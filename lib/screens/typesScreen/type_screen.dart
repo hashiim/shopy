@@ -20,11 +20,20 @@ class TypeScreen extends StatelessWidget {
                 itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        decoration: BoxDecoration(border: Border.all()),
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(prov.types[index]),
+                            Container(
+                              child: Text(
+                                prov.types[index],
+                              ),
+                              constraints:
+                                  BoxConstraints(minWidth: 200, maxWidth: 200),
+                            ),
                             IconButton(
                                 onPressed: () {
                                   prov.types.removeAt(index);
@@ -37,10 +46,7 @@ class TypeScreen extends StatelessWidget {
                     )),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(border: Border.all()),
-                child: AddTypeRow(),
-              ),
+              child: AddTypeRow(),
             ),
           ],
         ),

@@ -15,13 +15,6 @@ class ListsProvider extends ChangeNotifier {
     "type6666666",
     "type7777777",
   ];
-  // List<String> get types => _types;
-  // set types(i) {
-  //   _types = i;
-  //   notifyListeners();
-  // }
-
-  // List<bool> typesBool = [true, false, false, false, false, false, false];
 
   List<Map> options = [];
   makeMap() {
@@ -35,7 +28,6 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
-  // String newTypename = "";
   String newIteamName = "";
   /////////////////////////////////////////////////////
   List<Iteam> allIteams = [
@@ -44,11 +36,6 @@ class ListsProvider extends ChangeNotifier {
     Iteam(name: "All 2", type: ["2"]),
     Iteam(name: "All 3", type: ["3"]),
   ];
-  // List<Iteam> get allIteams => _allIteams;
-  // set allIteams(i) {
-  //   _allIteams = i;
-  //   notifyListeners();
-  // }
 
   deleteFromAll(index) {
     allIteams.removeAt(index);
@@ -62,18 +49,16 @@ class ListsProvider extends ChangeNotifier {
     Iteam(name: "Need 2", type: ["2"]),
     Iteam(name: "Need 3", type: ["3"]),
   ];
-  // List<Iteam> get neededIteams => _neededIteams;
-  // set neededIteams(i) {
-  //   _neededIteams = i;
-  //   notifyListeners();
-  // }
 
   addToNeed(index) {
-    neededIteams.add(Iteam(
-      name: allIteams[index].name,
-      type: allIteams[index].type,
-    ));
-    notifyListeners();
+    if (!neededIteams.contains(
+        Iteam(name: allIteams[index].name, type: allIteams[index].type))) {
+      neededIteams.add(Iteam(
+        name: allIteams[index].name,
+        type: allIteams[index].type,
+      ));
+      notifyListeners();
+    }
   }
 
   deleteFromNeed(index) {

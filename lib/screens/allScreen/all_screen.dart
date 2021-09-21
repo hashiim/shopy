@@ -27,6 +27,8 @@ class AllScreen extends StatelessWidget {
                   },
                   onTap: () {
                     prov.addToNeed(index);
+                    ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
+                        " ${prov.allIteams[index].name} has been added"));
                   },
                   child: Container(
                     padding: EdgeInsets.all(16),
