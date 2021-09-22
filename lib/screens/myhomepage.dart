@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopy/components/exit_show_dialog.dart';
+import 'package:shopy/components/filter/filter.dart';
 import 'package:shopy/components/myDrawer/my_drawer.dart';
 import 'package:shopy/screens/allScreen/all_screen.dart';
 import 'package:shopy/screens/neededScreen/need_screen.dart';
@@ -27,8 +28,13 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.filter_list_rounded)),
+              child: Builder(builder: (context) {
+                return IconButton(
+                    onPressed: () {
+                      showMyBottomSheet(context);
+                    },
+                    icon: Icon(Icons.filter_list_rounded));
+              }),
             )
           ],
         ),
