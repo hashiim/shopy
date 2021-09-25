@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:shopy/provider/list_provider.dart';
 
 showMyBottomSheet(context) {
-  print("done");
+  final ListsProvider prov = Provider.of<ListsProvider>(context, listen: false);
+  prov.filterMakeMap();
   Scaffold.of(context).showBottomSheet<void>((BuildContext context) {
     return Container(
       height: 200,
@@ -35,15 +36,17 @@ class FilerIteam extends StatelessWidget {
     }
 
     return Wrap(
+        runAlignment: WrapAlignment.center,
         spacing: 10.0,
         runSpacing: 20.0,
-        children: prov.options
+        children: prov.filters
             .map((option) => Container(
-                // margin: EdgeInsets.all(5),
                 decoration: customBoxDecoration(option['isActive']),
                 child: InkWell(
                     onTap: () {
                       prov.changeState(option);
+                      prov.makeFilterNeed(option);
+                      print(prov.filterNeededIteams.length);
                     },
                     child: Container(
                         padding: EdgeInsets.all(10),
