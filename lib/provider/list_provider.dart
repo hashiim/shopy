@@ -84,10 +84,14 @@ class ListsProvider extends ChangeNotifier {
         }
       });
     } else {
-      neededIteams.forEach((element) {
-        if (element.type.contains(option['title'])) {
-          filterNeededIteams.remove(element);
+      List x = [];
+      filters.forEach((element) {
+        if (element['isActive']) {
+          x.add(element['title']);
         }
+      });
+      x.forEach((element) {
+        filterNeededIteams.forEach((element) {});
       });
     }
   }
