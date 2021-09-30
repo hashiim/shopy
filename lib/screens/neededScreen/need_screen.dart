@@ -9,7 +9,7 @@ class NeededList extends StatelessWidget {
   Widget build(BuildContext context) {
     ListsProvider prov = Provider.of<ListsProvider>(context, listen: true);
     return ListView.builder(
-      itemCount: prov.neededIteams.length,
+      itemCount: prov.filterOrNot().length,
       itemBuilder: (context, index) => Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -17,7 +17,7 @@ class NeededList extends StatelessWidget {
             key: UniqueKey(),
             onDismissed: (DismissDirection dismissDirection) {
               ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
-                  " ${prov.neededIteams[index].name} has been deleted"));
+                  " ${prov.filterOrNot()[index].name} has been deleted"));
               prov.deleteFromNeed(index);
             },
             child: Container(
@@ -27,7 +27,7 @@ class NeededList extends StatelessWidget {
                 border: Border.all(),
               ),
               child: Text(
-                prov.neededIteams[index].name,
+                prov.filterOrNot()[index].name,
                 style: TextStyle(fontSize: 24),
               ),
             ),

@@ -122,7 +122,6 @@ class MyOptions extends StatelessWidget {
         runSpacing: 20.0,
         children: prov.options
             .map((option) => Container(
-                // margin: EdgeInsets.all(5),
                 decoration: customBoxDecoration(option['isActive']),
                 child: InkWell(
                     onTap: () {

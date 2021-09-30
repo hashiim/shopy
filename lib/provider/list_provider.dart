@@ -5,13 +5,13 @@ class ListsProvider extends ChangeNotifier {
   noti() => notifyListeners();
 
   List<String> types = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
+    // "1",
+    // "2",
+    // "3",
+    // "4",
+    // "5",
+    // "6",
+    // "7",
   ];
 
   List<Map> options = [];
@@ -29,12 +29,12 @@ class ListsProvider extends ChangeNotifier {
   String newIteamName = "";
   /////////////////////////////////////////////////////
   List<Iteam> allIteams = [
-    Iteam(name: "All 01", type: ["0", "1"]),
-    Iteam(name: "All 12", type: ["1", "2"]),
-    Iteam(name: "All 2", type: ["2"]),
-    Iteam(name: "All 345", type: ["3", "4", "5"]),
-    Iteam(name: "All 3", type: ["3"]),
-    Iteam(name: "All 567", type: ["5", "6", "7"]),
+    // Iteam(name: "All 01", type: ["0", "1"]),
+    // Iteam(name: "All 12", type: ["1", "2"]),
+    // Iteam(name: "All 2", type: ["2"]),
+    // Iteam(name: "All 345", type: ["3", "4", "5"]),
+    // Iteam(name: "All 3", type: ["3"]),
+    // Iteam(name: "All 567", type: ["5", "6", "7"]),
   ];
 
   deleteFromAll(index) {
@@ -44,12 +44,12 @@ class ListsProvider extends ChangeNotifier {
 
 ///////////////////////////////////////////////////////////
   List<Iteam> neededIteams = [
-    Iteam(name: "All 01", type: ["0", "1"]),
-    Iteam(name: "All 12", type: ["1", "2"]),
-    Iteam(name: "All 2", type: ["2"]),
-    Iteam(name: "All 345", type: ["3", "4", "5"]),
-    Iteam(name: "All 3", type: ["3"]),
-    Iteam(name: "All 567", type: ["5", "6", "7"]),
+    // Iteam(name: "All 01", type: ["0", "1"]),
+    // Iteam(name: "All 12", type: ["1", "2"]),
+    // Iteam(name: "All 2", type: ["2"]),
+    // Iteam(name: "All 345", type: ["3", "4", "5"]),
+    // Iteam(name: "All 3", type: ["3"]),
+    // Iteam(name: "All 567", type: ["5", "6", "7"]),
   ];
 
   addToNeed(index) {
@@ -64,8 +64,8 @@ class ListsProvider extends ChangeNotifier {
   }
 
   deleteFromNeed(index) {
-    neededIteams.removeAt(index);
-    notifyListeners();
+    neededIteams.remove(filterOrNot()[index]);
+    filterNeededIteams.remove(filterAllIteams);
   }
 
   bool filterFlag = false;
@@ -108,6 +108,19 @@ class ListsProvider extends ChangeNotifier {
       });
       filterNeededIteams.removeWhere((e) => toRemove.contains(e));
     }
-    print(filterNeededIteams.length);
+  }
+
+  filterOrNot() {
+    bool f = false;
+    filters.forEach((fil) {
+      if (fil['isActive']) {
+        f = true;
+      }
+    });
+    if (f) {
+      return filterNeededIteams;
+    } else {
+      return neededIteams;
+    }
   }
 }
