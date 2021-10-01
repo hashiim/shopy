@@ -14,7 +14,7 @@ class AllScreen extends StatelessWidget {
       children: [
         ListView.builder(
           shrinkWrap: true,
-          itemCount: prov.allIteams.length,
+          itemCount: prov.filterOrNotAll().length,
           itemBuilder: (context, index) {
             return Center(
               child: Padding(
@@ -22,13 +22,13 @@ class AllScreen extends StatelessWidget {
                 child: GestureDetector(
                   onLongPress: () {
                     ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
-                        " ${prov.allIteams[index].name} has been deleted"));
+                        " ${prov.filterOrNotAll()[index].name} has been deleted"));
                     prov.deleteFromAll(index);
                   },
                   onTap: () {
                     prov.addToNeed(index);
                     ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
-                        " ${prov.allIteams[index].name} has been added"));
+                        " ${prov.filterOrNotAll()[index].name} has been added"));
                   },
                   child: Container(
                     padding: EdgeInsets.all(16),
@@ -37,7 +37,7 @@ class AllScreen extends StatelessWidget {
                       border: Border.all(),
                     ),
                     child: Text(
-                      prov.allIteams[index].name,
+                      prov.filterOrNotAll()[index].name,
                       style: TextStyle(fontSize: 24),
                     ),
                   ),

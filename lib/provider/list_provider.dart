@@ -64,7 +64,7 @@ class ListsProvider extends ChangeNotifier {
   }
 
   deleteFromNeed(index) {
-    neededIteams.remove(filterOrNot()[index]);
+    neededIteams.remove(filterOrNotNeed()[index]);
     filterNeededIteams.remove(filterAllIteams);
   }
 
@@ -110,7 +110,40 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
-  filterOrNot() {
+  makeFilterAll(option) {
+    if (option['isActive'] == true) {
+      allIteams.forEach((element) {
+        if (element.type.contains(option['title'])) {
+          if (!filterAllIteams.contains(element)) {
+            filterAllIteams.add(element);
+          }
+        }
+      });
+    } else {
+      List x = [];
+      var toRemove = [];
+      bool exst;
+      filters.forEach((fil) {
+        if (fil['isActive']) {
+          x.add(fil['title']);
+        }
+      });
+      filterAllIteams.forEach((element) {
+        exst = false;
+        x.forEach((el) {
+          if (element.type.contains(el)) {
+            exst = true;
+          }
+        });
+        if (!exst) {
+          toRemove.add(element);
+        }
+      });
+      filterAllIteams.removeWhere((e) => toRemove.contains(e));
+    }
+  }
+
+  filterOrNotNeed() {
     bool f = false;
     filters.forEach((fil) {
       if (fil['isActive']) {
@@ -121,6 +154,20 @@ class ListsProvider extends ChangeNotifier {
       return filterNeededIteams;
     } else {
       return neededIteams;
+    }
+  }
+
+  filterOrNotAll() {
+    bool f = false;
+    filters.forEach((fil) {
+      if (fil['isActive']) {
+        f = true;
+      }
+    });
+    if (f) {
+      return filterAllIteams;
+    } else {
+      return allIteams;
     }
   }
 }

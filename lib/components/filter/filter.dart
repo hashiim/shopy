@@ -46,6 +46,7 @@ class FilerIteam extends StatelessWidget {
                     onTap: () {
                       prov.changeState(option);
                       prov.makeFilterNeed(option);
+                      prov.makeFilterAll(option);
                     },
                     child: Container(
                         padding: EdgeInsets.all(10),
