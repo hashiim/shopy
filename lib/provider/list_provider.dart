@@ -4,15 +4,7 @@ import '../../model/iteam.dart';
 class ListsProvider extends ChangeNotifier {
   noti() => notifyListeners();
 
-  List<String> types = [
-    // "1",
-    // "2",
-    // "3",
-    // "4",
-    // "5",
-    // "6",
-    // "7",
-  ];
+  List<String> types = [];
 
   List<Map> options = [];
   makeMap() {
@@ -28,29 +20,15 @@ class ListsProvider extends ChangeNotifier {
 
   String newIteamName = "";
   /////////////////////////////////////////////////////
-  List<Iteam> allIteams = [
-    // Iteam(name: "All 01", type: ["0", "1"]),
-    // Iteam(name: "All 12", type: ["1", "2"]),
-    // Iteam(name: "All 2", type: ["2"]),
-    // Iteam(name: "All 345", type: ["3", "4", "5"]),
-    // Iteam(name: "All 3", type: ["3"]),
-    // Iteam(name: "All 567", type: ["5", "6", "7"]),
-  ];
+  List<Iteam> allIteams = [];
 
   deleteFromAll(index) {
-    allIteams.removeAt(index);
-    notifyListeners();
+    filterAllIteams.remove(filterOrNotNeed()[index]);
+    filterAllIteams.remove(filterAllIteams);
   }
 
 ///////////////////////////////////////////////////////////
-  List<Iteam> neededIteams = [
-    // Iteam(name: "All 01", type: ["0", "1"]),
-    // Iteam(name: "All 12", type: ["1", "2"]),
-    // Iteam(name: "All 2", type: ["2"]),
-    // Iteam(name: "All 345", type: ["3", "4", "5"]),
-    // Iteam(name: "All 3", type: ["3"]),
-    // Iteam(name: "All 567", type: ["5", "6", "7"]),
-  ];
+  List<Iteam> neededIteams = [];
 
   addToNeed(index) {
     if (!neededIteams.contains(
@@ -65,7 +43,7 @@ class ListsProvider extends ChangeNotifier {
 
   deleteFromNeed(index) {
     neededIteams.remove(filterOrNotNeed()[index]);
-    filterNeededIteams.remove(filterAllIteams);
+    // filterNeededIteams.remove(filterAllIteams);
   }
 
   bool filterFlag = false;
