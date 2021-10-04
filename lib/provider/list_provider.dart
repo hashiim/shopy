@@ -5,7 +5,6 @@ class ListsProvider extends ChangeNotifier {
   noti() => notifyListeners();
 
   List<String> types = [];
-
   List<Map> options = [];
   makeMap() {
     options = types.map((e) => {'title': e, 'isActive': false}).toList();
@@ -23,36 +22,30 @@ class ListsProvider extends ChangeNotifier {
   List<Iteam> allIteams = [];
 
   deleteFromAll(index) {
-    filterAllIteams.remove(filterOrNotNeed()[index]);
-    filterAllIteams.remove(filterAllIteams);
+    allIteams.remove(filterOrNotAll()[index]);
   }
 
 ///////////////////////////////////////////////////////////
   List<Iteam> neededIteams = [];
-
   addToNeed(index) {
-    if (!neededIteams.contains(
-        Iteam(name: allIteams[index].name, type: allIteams[index].type))) {
+    if (!neededIteams.contains(Iteam(
+        name: filterOrNotAll()[index].name,
+        type: filterOrNotAll()[index].type))) {
       neededIteams.add(Iteam(
-        name: allIteams[index].name,
-        type: allIteams[index].type,
+        name: filterOrNotAll()[index].name,
+        type: filterOrNotAll()[index].type,
       ));
-      notifyListeners();
     }
   }
 
   deleteFromNeed(index) {
     neededIteams.remove(filterOrNotNeed()[index]);
-    // filterNeededIteams.remove(filterAllIteams);
   }
 
-  bool filterFlag = false;
   List<Map> filters = [];
   filterMakeMap() {
     filters = types.map((e) => {'title': e, 'isActive': false}).toList();
   }
-
-  List<Iteam> filterAllIteams = [];
 
   List<Iteam> filterNeededIteams = [];
   makeFilterNeed(option) {
@@ -88,6 +81,7 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
+  List<Iteam> filterAllIteams = [];
   makeFilterAll(option) {
     if (option['isActive'] == true) {
       allIteams.forEach((element) {

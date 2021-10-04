@@ -20,25 +20,28 @@ class AllScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
-                  onLongPress: () {
-                    ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
-                        " ${prov.filterOrNotAll()[index].name} has been deleted"));
-                    prov.deleteFromAll(index);
-                  },
                   onTap: () {
                     prov.addToNeed(index);
                     ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
                         " ${prov.filterOrNotAll()[index].name} has been added"));
                   },
-                  child: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(),
-                    ),
-                    child: Text(
-                      prov.filterOrNotAll()[index].name,
-                      style: TextStyle(fontSize: 24),
+                  child: Dismissible(
+                    onDismissed: (DismissDirection dismissDirection) {
+                      ScaffoldMessenger.of(context).showSnackBar(mySnackBar(
+                          " ${prov.filterOrNotAll()[index].name} has been deleted"));
+                      prov.deleteFromAll(index);
+                    },
+                    key: UniqueKey(),
+                    child: Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(),
+                      ),
+                      child: Text(
+                        prov.filterOrNotAll()[index].name,
+                        style: TextStyle(fontSize: 24),
+                      ),
                     ),
                   ),
                 ),
@@ -88,6 +91,7 @@ class NewIteamTextField extends StatelessWidget {
     final ListsProvider prov =
         Provider.of<ListsProvider>(context, listen: false);
     return TextField(
+      autofocus: true,
       onChanged: (e) {
         prov.newIteamName = e;
       },
