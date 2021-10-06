@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopy/components/exit_show_dialog.dart';
-import 'package:shopy/components/filter/filter.dart';
+import 'package:shopy/utlies/exit_show_dialog.dart';
 import 'package:shopy/components/myDrawer/my_drawer.dart';
+import 'package:shopy/components/my_app_bar.dart';
 import 'package:shopy/screens/allScreen/all_screen.dart';
 import 'package:shopy/screens/neededScreen/need_screen.dart';
 
@@ -56,29 +56,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({
-    Key? key,
-  }) : super(key: key);
-  @override
-  Size get preferredSize => const Size.fromHeight(100);
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: Builder(builder: (context) {
-            return IconButton(
-                onPressed: () {
-                  showMyBottomSheet(context);
-                },
-                icon: Icon(Icons.filter_list_rounded));
-          }),
-        )
-      ],
-    );
-  }
-}
-//PreferredSizeWidget

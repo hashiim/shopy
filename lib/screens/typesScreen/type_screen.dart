@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/screens/typesScreen/add_type_row.dart';
+import 'package:shopy/screens/typesScreen/localWidgets/add_type_row.dart';
 import 'package:shopy/provider/list_provider.dart';
 
 class TypeScreen extends StatelessWidget {

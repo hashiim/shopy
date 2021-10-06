@@ -17,7 +17,6 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
-  String newIteamName = "";
   /////////////////////////////////////////////////////
   List<Iteam> allIteams = [];
 
