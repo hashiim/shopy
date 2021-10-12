@@ -18,7 +18,7 @@ class MyDrawer extends StatelessWidget {
           ),
           TextButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) => TypeScreen(),

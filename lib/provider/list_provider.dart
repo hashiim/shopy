@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../../model/iteam.dart';
 
 class ListsProvider extends ChangeNotifier {
+  var x = false;
   noti() => notifyListeners();
-
   List<String> types = [];
   List<Map> options = [];
-  makeMap() {
+  void makeMap() {
     options = types.map((e) => {'title': e, 'isActive': false}).toList();
   }
 
@@ -17,6 +17,7 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
+  var newIteamName = "";
   /////////////////////////////////////////////////////
   List<Iteam> allIteams = [];
 
@@ -38,7 +39,11 @@ class ListsProvider extends ChangeNotifier {
   }
 
   deleteFromNeed(index) {
+    print(index);
+    print(filterOrNotNeed()[index].name);
+    filterNeededIteams.remove(filterOrNotNeed()[index]);
     neededIteams.remove(filterOrNotNeed()[index]);
+    noti();
   }
 
   List<Map> filters = [];
@@ -114,7 +119,7 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
-  filterOrNotNeed() {
+  List<Iteam> filterOrNotNeed() {
     bool f = false;
     filters.forEach((fil) {
       if (fil['isActive']) {

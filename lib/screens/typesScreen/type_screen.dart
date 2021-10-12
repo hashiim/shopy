@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopy/screens/myhomepage.dart';
 import 'package:shopy/screens/typesScreen/localWidgets/add_type_row.dart';
 import 'package:shopy/provider/list_provider.dart';
 
@@ -48,6 +49,16 @@ class TypeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: AddTypeRow(),
             ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => MyHomePage(),
+                    ),
+                  );
+                },
+                child: Text("back"))
           ],
         ),
       ),
