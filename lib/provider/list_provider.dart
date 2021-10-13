@@ -39,10 +39,11 @@ class ListsProvider extends ChangeNotifier {
   }
 
   deleteFromNeed(index) {
-    print(index);
+    var x = filterOrNotNeed()[index];
+
     print(filterOrNotNeed()[index].name);
-    filterNeededIteams.remove(filterOrNotNeed()[index]);
-    neededIteams.remove(filterOrNotNeed()[index]);
+    filterNeededIteams.remove(x);
+    neededIteams.remove(x);
     noti();
   }
 
