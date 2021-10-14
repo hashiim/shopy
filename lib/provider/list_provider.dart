@@ -39,12 +39,13 @@ class ListsProvider extends ChangeNotifier {
   }
 
   deleteFromNeed(index) {
-    var x = filterOrNotNeed()[index];
+    neededIteams.remove(filterOrNotNeed()[index]);
+    // var x = filterOrNotNeed()[index];
 
-    print(filterOrNotNeed()[index].name);
-    filterNeededIteams.remove(x);
-    neededIteams.remove(x);
-    noti();
+    // print(filterOrNotNeed()[index].name);
+    // filterNeededIteams.remove(x);
+    // neededIteams.remove(x);
+    // noti();
   }
 
   List<Map> filters = [];
@@ -147,4 +148,9 @@ class ListsProvider extends ChangeNotifier {
       return allIteams;
     }
   }
+
+  // clearfilter() {
+  //   filterMakeMap();
+  //   noti();
+  // }
 }

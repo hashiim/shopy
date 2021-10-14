@@ -39,24 +39,32 @@ class FilerIteam extends StatelessWidget {
         runAlignment: WrapAlignment.center,
         spacing: 10.0,
         runSpacing: 20.0,
-        children: prov.filters
-            .map((option) => Container(
-                decoration: customBoxDecoration(option['isActive']),
-                child: InkWell(
-                    onTap: () {
-                      prov.changeState(option);
-                      prov.makeFilterNeed(option);
-                      prov.makeFilterAll(option);
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Text('${option['title']}',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                color: option['isActive']
-                                    ? Colors.white
-                                    : Colors.black87))))))
-            .toList());
+        children:
+            //  <Widget>[
+            //       IconButton(
+            //           onPressed: () {
+            //             prov.clearfilter();
+            //           },
+            //           icon: Icon(Icons.remove))
+            //     ] +
+            prov.filters
+                .map((option) => Container(
+                    decoration: customBoxDecoration(option['isActive']),
+                    child: InkWell(
+                        onTap: () {
+                          prov.changeState(option);
+                          prov.makeFilterNeed(option);
+                          prov.makeFilterAll(option);
+                        },
+                        child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Text('${option['title']}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: option['isActive']
+                                        ? Colors.white
+                                        : Colors.black87))))))
+                .toList());
   }
 }
