@@ -2,40 +2,19 @@ import 'package:flutter/material.dart';
 import '../../model/iteam.dart';
 
 class ListsProvider extends ChangeNotifier {
-  var x = false;
   noti() => notifyListeners();
   List<String> types = [];
-  List<Map> options = [];
-  void makeMap() {
-    options = types.map((e) => {'title': e, 'isActive': false}).toList();
-  }
 
-  changeState(item) {
-    {
-      item['isActive'] = !item['isActive'];
-      notifyListeners();
-    }
-  }
-
-  var newIteamName = "";
-  /////////////////////////////////////////////////////
-  List<Iteam> allIteams = [];
-
-  deleteFromAll(index) {
-    allIteams.remove(filterOrNotAll()[index]);
-  }
-
-///////////////////////////////////////////////////////////
+////////////////////////////////////////////need/////////
   List<Iteam> neededIteams = [];
-  addToNeed(index) {
-    if (!neededIteams.contains(Iteam(
-        name: filterOrNotAll()[index].name,
-        type: filterOrNotAll()[index].type))) {
-      neededIteams.add(Iteam(
-        name: filterOrNotAll()[index].name,
-        type: filterOrNotAll()[index].type,
-      ));
-    }
+  List<Iteam> filterOrNotNeed() {
+    bool f = false;
+    filters.forEach((fil) {
+      if (fil['isActive']) {
+        f = true;
+      }
+    });
+    return f ? filterNeededIteams : neededIteams;
   }
 
   deleteFromNeed(index) {
@@ -48,8 +27,48 @@ class ListsProvider extends ChangeNotifier {
     // noti();
   }
 
+  ////////////////////////////////////////////all/////////
+  List<Iteam> allIteams = [];
+  filterOrNotAll() {
+    bool f = false;
+    filters.forEach((fil) {
+      if (fil['isActive']) {
+        f = true;
+      }
+    });
+    return f ? filterAllIteams : allIteams;
+  }
+
+  deleteFromAll(index) {
+    allIteams.remove(filterOrNotAll()[index]);
+  }
+
+  addToNeed(index) {
+    var temp = Iteam(
+        name: filterOrNotAll()[index].name, type: filterOrNotAll()[index].type);
+    if (!neededIteams.contains(temp)) {
+      neededIteams.add(temp);
+    }
+  }
+
+////////////////////////////////////////add new iteam dialog////
+  var newIteamName = "";
+  var selectedOption = false;
+  List<Map> options = [];
+  void makeMapOptions() {
+    options = types.map((e) => {'title': e, 'isActive': false}).toList();
+  }
+
+  changeState(item) {
+    {
+      item['isActive'] = !item['isActive'];
+      notifyListeners();
+    }
+  }
+
+//////////////////////////////////////////////////////filter/////
   List<Map> filters = [];
-  filterMakeMap() {
+  makeMapFilter() {
     filters = types.map((e) => {'title': e, 'isActive': false}).toList();
   }
 
@@ -121,36 +140,8 @@ class ListsProvider extends ChangeNotifier {
     }
   }
 
-  List<Iteam> filterOrNotNeed() {
-    bool f = false;
-    filters.forEach((fil) {
-      if (fil['isActive']) {
-        f = true;
-      }
-    });
-    if (f) {
-      return filterNeededIteams;
-    } else {
-      return neededIteams;
-    }
+  clearfilter() {
+    makeMapFilter();
+    noti();
   }
-
-  filterOrNotAll() {
-    bool f = false;
-    filters.forEach((fil) {
-      if (fil['isActive']) {
-        f = true;
-      }
-    });
-    if (f) {
-      return filterAllIteams;
-    } else {
-      return allIteams;
-    }
-  }
-
-  // clearfilter() {
-  //   filterMakeMap();
-  //   noti();
-  // }
 }

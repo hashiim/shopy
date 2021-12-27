@@ -12,55 +12,53 @@ class TypeScreen extends StatelessWidget {
     ListsProvider prov = Provider.of<ListsProvider>(context, listen: true);
 
     return Scaffold(
-      body: Container(
-        child: ListView(
-          children: [
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: prov.types.length,
-                itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              child: Text(
-                                prov.types[index],
-                              ),
-                              constraints:
-                                  BoxConstraints(minWidth: 200, maxWidth: 200),
+      body: ListView(
+        children: [
+          ListView.builder(
+              physics: ScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: prov.types.length,
+              itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            child: Text(
+                              prov.types[index],
                             ),
-                            IconButton(
-                                onPressed: () {
-                                  prov.types.removeAt(index);
-                                  prov.noti();
-                                },
-                                icon: Icon(Icons.remove))
-                          ],
-                        ),
+                            constraints:
+                                BoxConstraints(minWidth: 200, maxWidth: 200),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                prov.types.removeAt(index);
+                                prov.noti();
+                              },
+                              icon: Icon(Icons.remove))
+                        ],
                       ),
-                    )),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AddTypeRow(),
-            ),
-            TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => MyHomePage(),
                     ),
-                  );
-                },
-                child: Text("back"))
-          ],
-        ),
+                  )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AddTypeRow(),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => MyHomePage(),
+                  ),
+                );
+              },
+              child: Text("back"))
+        ],
       ),
     );
   }

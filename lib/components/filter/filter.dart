@@ -4,17 +4,18 @@ import 'package:shopy/provider/list_provider.dart';
 
 showMyBottomSheet(context) {
   final ListsProvider prov = Provider.of<ListsProvider>(context, listen: false);
-  prov.filterMakeMap();
+
+  prov.makeMapFilter();
   Scaffold.of(context).showBottomSheet<void>((BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
-      child: FilerIteam(),
+      child: FilterdIteams(),
     );
   });
 }
 
-class FilerIteam extends StatelessWidget {
-  const FilerIteam({Key? key}) : super(key: key);
+class FilterdIteams extends StatelessWidget {
+  const FilterdIteams({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,36 +36,44 @@ class FilerIteam extends StatelessWidget {
       );
     }
 
-    return Wrap(
-        runAlignment: WrapAlignment.center,
-        spacing: 10.0,
-        runSpacing: 20.0,
-        children:
-            //  <Widget>[
-            //       IconButton(
-            //           onPressed: () {
-            //             prov.clearfilter();
-            //           },
-            //           icon: Icon(Icons.remove))
-            //     ] +
-            prov.filters
-                .map((option) => Container(
-                    decoration: customBoxDecoration(option['isActive']),
-                    child: InkWell(
-                        onTap: () {
-                          prov.changeState(option);
-                          prov.makeFilterNeed(option);
-                          prov.makeFilterAll(option);
-                        },
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Text('${option['title']}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: option['isActive']
-                                        ? Colors.white
-                                        : Colors.black87))))))
-                .toList());
+    return Stack(children: [
+      SingleChildScrollView(
+        primary: false,
+        physics: AlwaysScrollableScrollPhysics(),
+        child: Wrap(
+            spacing: 10.0,
+            runSpacing: 20.0,
+            children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                    width: 30,
+                  )
+                ] +
+                prov.filters
+                    .map((option) => Container(
+                        decoration: customBoxDecoration(option['isActive']),
+                        child: InkWell(
+                            onTap: () {
+                              prov.changeState(option);
+                              prov.makeFilterNeed(option);
+                              prov.makeFilterAll(option);
+                            },
+                            child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Text('${option['title']}',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        color: option['isActive']
+                                            ? Colors.white
+                                            : Colors.black87))))))
+                    .toList()),
+      ),
+      IconButton(
+          onPressed: () {
+            prov.clearfilter();
+          },
+          icon: Icon(Icons.clear)),
+    ]);
   }
 }

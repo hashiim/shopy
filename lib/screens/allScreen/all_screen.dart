@@ -15,6 +15,7 @@ class AllScreen extends StatelessWidget {
       children: [
         ListView.builder(
           shrinkWrap: true,
+          physics: ScrollPhysics(),
           itemCount: prov.filterOrNotAll().length,
           itemBuilder: (context, index) {
             return Center(

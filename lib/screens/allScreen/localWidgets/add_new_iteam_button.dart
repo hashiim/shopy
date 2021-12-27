@@ -19,14 +19,14 @@ class AddNewIteamButton extends StatelessWidget {
         onTap: () {
           prov.newIteamName = "";
           if (prov.types.length != 0) {
-            prov.makeMap();
+            prov.makeMapOptions();
 
             showDialog(
                 context: context,
                 builder: (_) {
                   return SimpleDialog(
                     children: [MyTextField(), MyOptions(), AddButton()],
-                    title: Text('Add new Iteam'),
+                    title: Text("Add New Iteam"),
                   );
                 });
           } else {
@@ -35,13 +35,13 @@ class AddNewIteamButton extends StatelessWidget {
           }
         },
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.symmetric(vertical: 30),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             border: Border.all(),
           ),
           child: Text(
-            "Add New Iteam",
+            '((--NEw--))',
             style: TextStyle(fontSize: 24),
           ),
         ),
@@ -97,11 +97,11 @@ class MyOptions extends StatelessWidget {
                 decoration: customBoxDecoration(option['isActive']),
                 child: InkWell(
                     onTap: () {
-                      prov.x = false;
+                      prov.selectedOption = false;
                       prov.changeState(option);
                       prov.options.forEach((element) {
                         if (element['isActive'] == true) {
-                          prov.x = true;
+                          prov.selectedOption = true;
                           prov.noti();
                         }
                       });
@@ -127,7 +127,7 @@ class AddButton extends StatelessWidget {
         Provider.of<ListsProvider>(context, listen: true);
 
     return TextButton(
-      onPressed: prov.newIteamName == "" || prov.x == false
+      onPressed: prov.newIteamName == "" || prov.selectedOption == false
           ? null
           : () {
               List<String> temp = [];
@@ -138,7 +138,7 @@ class AddButton extends StatelessWidget {
                 }
               });
               prov.allIteams.add(Iteam(name: prov.newIteamName, type: temp));
-              prov.x = false;
+              prov.selectedOption = false;
 
               prov.noti();
               Navigator.pop(context);
