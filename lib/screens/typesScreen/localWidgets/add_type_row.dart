@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants/snackBar.dart';
+import 'package:shopy/constants/snack_bar.dart';
 import 'package:shopy/provider/list_provider.dart';
 
 class AddTypeRow extends StatefulWidget {
@@ -28,14 +28,14 @@ class _AddTypeRowState extends State<AddTypeRow> {
     return Container(
       decoration: BoxDecoration(
           border: Border.all(),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-            constraints: BoxConstraints(minWidth: 200, maxWidth: 200),
+            constraints: const BoxConstraints(minWidth: 200, maxWidth: 200),
             child: NewTypeTextField(
-              myController: this.myController,
+              myController: myController,
             ),
           ),
           IconButton(
@@ -49,7 +49,7 @@ class _AddTypeRowState extends State<AddTypeRow> {
                   prov.noti();
                 }
               },
-              icon: Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
       ),
     );

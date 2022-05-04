@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class Iteam extends Equatable {
-  final name;
+  final String name;
   final List<String> type;
-  Iteam({this.name, required this.type});
+  const Iteam({required this.name, required this.type});
 
   @override
   List<Object?> get props => [name, type];

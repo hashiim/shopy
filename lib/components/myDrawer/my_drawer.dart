@@ -21,15 +21,15 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) => TypeScreen(),
+                    builder: (BuildContext context) => const TypeScreen(),
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 "Types managmen",
                 textAlign: TextAlign.center,
               )),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

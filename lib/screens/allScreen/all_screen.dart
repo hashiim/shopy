@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants/snackBar.dart';
+import 'package:shopy/constants/snack_bar.dart';
 import 'package:shopy/provider/list_provider.dart';
 
 import 'localWidgets/add_new_iteam_button.dart';
 
 class AllScreen extends StatelessWidget {
-  AllScreen({Key? key}) : super(key: key);
+  const AllScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final ListsProvider prov =
@@ -15,7 +15,7 @@ class AllScreen extends StatelessWidget {
       children: [
         ListView.builder(
           shrinkWrap: true,
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           itemCount: prov.filterOrNotAll().length,
           itemBuilder: (context, index) {
             return Center(
@@ -35,14 +35,15 @@ class AllScreen extends StatelessWidget {
                     },
                     key: UniqueKey(),
                     child: Container(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
                         border: Border.all(),
                       ),
                       child: Text(
                         prov.filterOrNotAll()[index].name,
-                        style: TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24),
                       ),
                     ),
                   ),
@@ -51,7 +52,7 @@ class AllScreen extends StatelessWidget {
             );
           },
         ),
-        AddNewIteamButton(),
+        const AddNewIteamButton(),
       ],
     );
   }

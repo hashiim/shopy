@@ -15,7 +15,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> _widgetOptions = <Widget>[NeededList(), AllScreen()];
+  final List<Widget> _widgetOptions = <Widget>[
+    const NeededList(),
+    const AllScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +27,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return exitShowDialog(context);
       },
       child: Scaffold(
-        appBar: MyAppBar(),
-        drawer: MyDrawer(),
+        appBar: const MyAppBar(),
+        drawer: const MyDrawer(),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           type: BottomNavigationBarType.shifting,
@@ -34,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
               _selectedIndex = index;
             });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.archive,

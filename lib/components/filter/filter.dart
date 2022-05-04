@@ -7,7 +7,7 @@ showMyBottomSheet(context) {
 
   prov.makeMapFilter();
   Scaffold.of(context).showBottomSheet<void>((BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: 200,
       child: FilterdIteams(),
     );
@@ -24,8 +24,8 @@ class FilterdIteams extends StatelessWidget {
 
     customBoxDecoration(isActive) {
       return BoxDecoration(
-        color: isActive ? Color(0xff1763DD) : Colors.white,
-        border: Border(
+        color: isActive ? const Color(0xff1763DD) : Colors.white,
+        border: const Border(
             left: BorderSide(color: Colors.black12, width: 1.0),
             bottom: BorderSide(color: Colors.black12, width: 1.0),
             top: BorderSide(color: Colors.black12, width: 1.0),
@@ -39,12 +39,12 @@ class FilterdIteams extends StatelessWidget {
     return Stack(children: [
       SingleChildScrollView(
         primary: false,
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Wrap(
             spacing: 10.0,
             runSpacing: 20.0,
             children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                     width: 30,
                   )
@@ -59,7 +59,7 @@ class FilterdIteams extends StatelessWidget {
                               prov.makeFilterAll(option);
                             },
                             child: Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 child: Text('${option['title']}',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -73,7 +73,7 @@ class FilterdIteams extends StatelessWidget {
           onPressed: () {
             prov.clearfilter();
           },
-          icon: Icon(Icons.clear)),
+          icon: const Icon(Icons.clear)),
     ]);
   }
 }

@@ -4,15 +4,17 @@ import 'package:shopy/provider/list_provider.dart';
 import 'package:shopy/screens/myhomepage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ListsProvider>(
         create: (BuildContext context) => ListsProvider(),
-        child: MaterialApp(
+        child: const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'shopy',
           home: MyHomePage(),

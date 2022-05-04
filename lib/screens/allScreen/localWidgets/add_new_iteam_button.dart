@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants/snackBar.dart';
+import 'package:shopy/constants/snack_bar.dart';
 import 'package:shopy/model/iteam.dart';
 import 'package:shopy/provider/list_provider.dart';
 
@@ -18,13 +18,13 @@ class AddNewIteamButton extends StatelessWidget {
       child: InkWell(
         onTap: () {
           prov.newIteamName = "";
-          if (prov.types.length != 0) {
+          if (prov.types.isNotEmpty) {
             prov.makeMapOptions();
 
             showDialog(
                 context: context,
                 builder: (_) {
-                  return SimpleDialog(
+                  return const SimpleDialog(
                     children: [MyTextField(), MyOptions(), AddButton()],
                     title: Text("Add New Iteam"),
                   );
@@ -35,12 +35,12 @@ class AddNewIteamButton extends StatelessWidget {
           }
         },
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 30),
+          padding: const EdgeInsets.symmetric(vertical: 30),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(),
           ),
-          child: Text(
+          child: const Text(
             '((--NEw--))',
             style: TextStyle(fontSize: 24),
           ),
@@ -77,8 +77,8 @@ class MyOptions extends StatelessWidget {
 
     customBoxDecoration(isActive) {
       return BoxDecoration(
-        color: isActive ? Color(0xff1763DD) : Colors.white,
-        border: Border(
+        color: isActive ? const Color(0xff1763DD) : Colors.white,
+        border: const Border(
             left: BorderSide(color: Colors.black12, width: 1.0),
             bottom: BorderSide(color: Colors.black12, width: 1.0),
             top: BorderSide(color: Colors.black12, width: 1.0),
@@ -99,15 +99,15 @@ class MyOptions extends StatelessWidget {
                     onTap: () {
                       prov.selectedOption = false;
                       prov.changeState(option);
-                      prov.options.forEach((element) {
+                      for (var element in prov.options) {
                         if (element['isActive'] == true) {
                           prov.selectedOption = true;
                           prov.noti();
                         }
-                      });
+                      }
                     },
                     child: Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Text('${option['title']}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -120,7 +120,7 @@ class MyOptions extends StatelessWidget {
 }
 
 class AddButton extends StatelessWidget {
-  AddButton({Key? key}) : super(key: key);
+  const AddButton({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final ListsProvider prov =
@@ -131,19 +131,19 @@ class AddButton extends StatelessWidget {
           ? null
           : () {
               List<String> temp = [];
-              prov.options.forEach((element) {
+              for (var element in prov.options) {
                 if (element['isActive'] == true) {
                   temp.add(element['title']);
                   element['isActive'] = false;
                 }
-              });
+              }
               prov.allIteams.add(Iteam(name: prov.newIteamName, type: temp));
               prov.selectedOption = false;
 
               prov.noti();
               Navigator.pop(context);
             },
-      child: Text("Add"),
+      child: const Text("Add"),
     );
   }
 }

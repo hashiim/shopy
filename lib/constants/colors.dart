@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 List<MaterialColor> myColors = [
-  createMaterialColor(Color(0xff606c38)),
-  createMaterialColor(Color(0xff283618)),
-  createMaterialColor(Color(0xfffefae0)),
-  createMaterialColor(Color(0xffdda15e)),
-  createMaterialColor(Color(0xffbc6c25)),
+  createMaterialColor(const Color(0xff606c38)),
+  createMaterialColor(const Color(0xff283618)),
+  createMaterialColor(const Color(0xfffefae0)),
+  createMaterialColor(const Color(0xffdda15e)),
+  createMaterialColor(const Color(0xffbc6c25)),
 ];
 
 MaterialColor createMaterialColor(Color color) {
@@ -15,7 +15,7 @@ MaterialColor createMaterialColor(Color color) {
   for (int i = 1; i < 10; i++) {
     strengths.add(0.1 * i);
   }
-  strengths.forEach((strength) {
+  for (var strength in strengths) {
     final double ds = 0.5 - strength;
     swatch[(strength * 1000).round()] = Color.fromRGBO(
       r + ((ds < 0 ? r : (255 - r)) * ds).round(),
@@ -23,6 +23,6 @@ MaterialColor createMaterialColor(Color color) {
       b + ((ds < 0 ? b : (255 - b)) * ds).round(),
       1,
     );
-  });
+  }
   return MaterialColor(color.value, swatch);
 }

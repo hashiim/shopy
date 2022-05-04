@@ -6,6 +6,6 @@ mySnackBar(String text) {
       text,
       textAlign: TextAlign.center,
     ),
-    duration: Duration(seconds: 1),
+    duration: const Duration(seconds: 1),
   );
 }

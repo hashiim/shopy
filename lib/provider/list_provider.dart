@@ -9,11 +9,11 @@ class ListsProvider extends ChangeNotifier {
   List<Iteam> neededIteams = [];
   List<Iteam> filterOrNotNeed() {
     bool f = false;
-    filters.forEach((fil) {
+    for (var fil in filters) {
       if (fil['isActive']) {
         f = true;
       }
-    });
+    }
     return f ? filterNeededIteams : neededIteams;
   }
 
@@ -31,11 +31,11 @@ class ListsProvider extends ChangeNotifier {
   List<Iteam> allIteams = [];
   filterOrNotAll() {
     bool f = false;
-    filters.forEach((fil) {
+    for (var fil in filters) {
       if (fil['isActive']) {
         f = true;
       }
-    });
+    }
     return f ? filterAllIteams : allIteams;
   }
 
@@ -75,33 +75,33 @@ class ListsProvider extends ChangeNotifier {
   List<Iteam> filterNeededIteams = [];
   makeFilterNeed(option) {
     if (option['isActive'] == true) {
-      neededIteams.forEach((element) {
+      for (var element in neededIteams) {
         if (element.type.contains(option['title'])) {
           if (!filterNeededIteams.contains(element)) {
             filterNeededIteams.add(element);
           }
         }
-      });
+      }
     } else {
       List x = [];
       var toRemove = [];
       bool exst;
-      filters.forEach((fil) {
+      for (var fil in filters) {
         if (fil['isActive']) {
           x.add(fil['title']);
         }
-      });
-      filterNeededIteams.forEach((element) {
+      }
+      for (var element in filterNeededIteams) {
         exst = false;
-        x.forEach((el) {
+        for (var el in x) {
           if (element.type.contains(el)) {
             exst = true;
           }
-        });
+        }
         if (!exst) {
           toRemove.add(element);
         }
-      });
+      }
       filterNeededIteams.removeWhere((e) => toRemove.contains(e));
     }
   }
@@ -109,33 +109,33 @@ class ListsProvider extends ChangeNotifier {
   List<Iteam> filterAllIteams = [];
   makeFilterAll(option) {
     if (option['isActive'] == true) {
-      allIteams.forEach((element) {
+      for (var element in allIteams) {
         if (element.type.contains(option['title'])) {
           if (!filterAllIteams.contains(element)) {
             filterAllIteams.add(element);
           }
         }
-      });
+      }
     } else {
       List x = [];
       var toRemove = [];
       bool exst;
-      filters.forEach((fil) {
+      for (var fil in filters) {
         if (fil['isActive']) {
           x.add(fil['title']);
         }
-      });
-      filterAllIteams.forEach((element) {
+      }
+      for (var element in filterAllIteams) {
         exst = false;
-        x.forEach((el) {
+        for (var el in x) {
           if (element.type.contains(el)) {
             exst = true;
           }
-        });
+        }
         if (!exst) {
           toRemove.add(element);
         }
-      });
+      }
       filterAllIteams.removeWhere((e) => toRemove.contains(e));
     }
   }

@@ -15,7 +15,7 @@ class TypeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListView.builder(
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               shrinkWrap: true,
               itemCount: prov.types.length,
               itemBuilder: (context, index) => Padding(
@@ -23,7 +23,8 @@ class TypeScreen extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border.all(),
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20))),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -31,21 +32,21 @@ class TypeScreen extends StatelessWidget {
                             child: Text(
                               prov.types[index],
                             ),
-                            constraints:
-                                BoxConstraints(minWidth: 200, maxWidth: 200),
+                            constraints: const BoxConstraints(
+                                minWidth: 200, maxWidth: 200),
                           ),
                           IconButton(
                               onPressed: () {
                                 prov.types.removeAt(index);
                                 prov.noti();
                               },
-                              icon: Icon(Icons.remove))
+                              icon: const Icon(Icons.remove))
                         ],
                       ),
                     ),
                   )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: AddTypeRow(),
           ),
           TextButton(
@@ -53,11 +54,11 @@ class TypeScreen extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) => MyHomePage(),
+                    builder: (BuildContext context) => const MyHomePage(),
                   ),
                 );
               },
-              child: Text("back"))
+              child: const Text("back"))
         ],
       ),
     );

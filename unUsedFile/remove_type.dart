@@ -8,7 +8,7 @@ class MyRemoveType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.remove),
+      leading: const Icon(Icons.remove),
       title: const Text('Remove types'),
       onTap: () {},
     );

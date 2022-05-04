@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants/snackBar.dart';
+import 'package:shopy/constants/snack_bar.dart';
 import 'package:shopy/provider/list_provider.dart';
 
 class AddNewType extends StatefulWidget {
@@ -18,7 +18,7 @@ class _AddNewTypeState extends State<AddNewType> {
     ListsProvider prov = Provider.of<ListsProvider>(context, listen: false);
     return AnimatedCrossFade(
       firstChild: ListTile(
-        leading: Icon(Icons.add),
+        leading: const Icon(Icons.add),
         title: const Text('Add types'),
         onTap: () {
           setState(() {
@@ -47,10 +47,10 @@ class _AddNewTypeState extends State<AddNewType> {
                 });
                 _type = "";
               },
-              icon: Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
       ),
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       crossFadeState:
           _first ? CrossFadeState.showFirst : CrossFadeState.showSecond,
     );

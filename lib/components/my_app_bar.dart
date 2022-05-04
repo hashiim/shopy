@@ -18,7 +18,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () {
                   showMyBottomSheet(context);
                 },
-                icon: Icon(Icons.filter_list_rounded));
+                icon: const Icon(Icons.filter_list_rounded));
           }),
         )
       ],

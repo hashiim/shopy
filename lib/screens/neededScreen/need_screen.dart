@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopy/constants/snackBar.dart';
+import 'package:shopy/constants/snack_bar.dart';
 import 'package:shopy/provider/list_provider.dart';
 
 class NeededList extends StatelessWidget {
-  NeededList({Key? key}) : super(key: key);
+  const NeededList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     ListsProvider prov = Provider.of<ListsProvider>(context, listen: true);
@@ -21,14 +21,14 @@ class NeededList extends StatelessWidget {
               prov.deleteFromNeed(index);
             },
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
                 border: Border.all(),
               ),
               child: Text(
                 prov.filterOrNotNeed()[index].name,
-                style: TextStyle(fontSize: 24),
+                style: const TextStyle(fontSize: 24),
               ),
             ),
           ),
