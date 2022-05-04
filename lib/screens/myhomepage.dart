@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopy/components/exit_show_dialog.dart';
+import 'package:shopy/utlies/exit_show_dialog.dart';
 import 'package:shopy/components/myDrawer/my_drawer.dart';
+import 'package:shopy/components/my_app_bar.dart';
 import 'package:shopy/screens/allScreen/all_screen.dart';
 import 'package:shopy/screens/neededScreen/need_screen.dart';
 
@@ -23,15 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return exitShowDialog(context);
       },
       child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.filter_list_rounded)),
-            )
-          ],
-        ),
+        appBar: MyAppBar(),
         drawer: MyDrawer(),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,

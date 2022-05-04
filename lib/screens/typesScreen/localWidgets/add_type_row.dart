@@ -65,6 +65,7 @@ class NewTypeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autofocus: true,
       controller: myController,
     );
   }
